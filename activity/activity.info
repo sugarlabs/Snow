@@ -1,0 +1,10 @@
+
+[Activity]
+name = Snow
+bundle_id = org.sugarlabs.pippy.broot_e2895920
+exec = sugar-activity activity.VteActivity
+icon = activity-icon
+activity_version = 1
+mime_types = 
+show_launcher = yes
+

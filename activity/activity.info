@@ -1,10 +1,10 @@
 
 [Activity]
 name = Snow
-bundle_id = org.sugarlabs.pippy.broot_e2895920
+bundle_id = org.laptop.pippy.Snow
 exec = sugar-activity activity.VteActivity
 icon = activity-icon
-activity_version = 1
+activity_version = 2
 mime_types = 
 show_launcher = yes
 

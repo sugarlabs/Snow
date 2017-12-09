@@ -136,9 +136,15 @@ class VteActivity(ViewSourceActivity):
         self._vte.set_size_request(200, 300)
         font = 'Monospace 10'
         self._vte.set_font(Pango.FontDescription(font))
-        self._vte.set_colors(Gdk.color_parse('#000000'),
-                             Gdk.color_parse('#E7E7E7'),
-                             [])
+        fg_color = '#000000'
+        bg_color = '#E7E7E7'
+        try:
+            self._vte.set_colors(Gdk.color_parse(fg_color),
+                                 Gdk.color_parse(bg_color),
+                                 [])
+        except TypeError:
+            self._vte.set_colors(Gdk.RGBA(*Gdk.color_parse(fg_color).to_floats()),
+                          Gdk.RGBA(*Gdk.color_parse(bg_color).to_floats()), [])
         '''
         self._vte.connect('selection-changed', self._on_selection_changed_cb)
         # FIXME It does not work because it expects and receives
@@ -174,8 +180,11 @@ class VteActivity(ViewSourceActivity):
         # the 'sleep 1' works around a bug with the command dying before
         # the vte widget manages to snarf the last bits of its output
         logging.error(bundle_path)
-
-        self._pid = self._vte.fork_command_full(
+        if hasattr(self._vte, 'fork_command_full'):
+            f = self._vte.fork_command_full
+        else:
+            f = self._vte.spawn_sync
+        (self._pid, _) = f(
             Vte.PtyFlags.DEFAULT,
             bundle_path,
             ['/bin/sh', '-c', 'python %s/pippy_app.py; sleep 1' % bundle_path],
@@ -198,7 +207,7 @@ class VteActivity(ViewSourceActivity):
         if targetType == TARGET_TYPE_TEXT:
             self._vte.feed_child(selection.data)
 
-    def on_child_exit(self, widget):
+    def on_child_exit(self, widget, status=None):
         """This method is invoked when the user's script exits."""
         pass  # override in subclass
 

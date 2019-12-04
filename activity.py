@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Copyright (C) 2007,2008,2010 One Laptop per Child Association, Inc.
 # Written by C. Scott Ananian <cscott@laptop.org>
@@ -179,7 +179,6 @@ class VteActivity(ViewSourceActivity):
         bundle_path = activity.get_bundle_path()
         # the 'sleep 1' works around a bug with the command dying before
         # the vte widget manages to snarf the last bits of its output
-        logging.error(bundle_path)
         if hasattr(self._vte, 'fork_command_full'):
             f = self._vte.fork_command_full
         else:

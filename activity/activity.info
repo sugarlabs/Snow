@@ -1,7 +1,7 @@
 [Activity]
 name = Snow
 bundle_id = org.laptop.pippy.Snow
-exec = sugar-activity activity.VteActivity
+exec = sugar-activity3 activity.VteActivity
 icon = activity-icon
 activity_version = 2
 mime_types = 

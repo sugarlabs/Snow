@@ -1,1 +1,13 @@
-No news.
+3
+
+* Fix Vte version warnings (Ezequiel Pereira),
+* Use available Vte versions,
+* Remove unused Physics library,
+* Resynchronise with Pippy,
+* Add setup,
+* Fix more version warnings,
+* Port to modern Vte,
+* Port PyGameActivity to Sugar Toolkit for GTK 3,
+* Add copyright and license,
+* Port to Python 3 (Bottersnike),
+* Use python3 in shebangs and remove logging (Ibiam Chihurumnaya).
